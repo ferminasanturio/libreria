@@ -1,11 +1,15 @@
 from django.shortcuts import render
-
 from django.http import HttpResponse
-
-from mi_libreria.models import Libro, Generos, Autores
+from django.template import loader
+from .models import Libro, Generos, Autores
 
 def inicio(request):
-    return HttpResponse("Hello, world. You're at the library index.")
+    http_response = render(
+        request=request,
+        template_name= 'mi_libreria/inicio.html',
+        context={},
+    )
+    return http_response
 
 def listar_libros(request):
     contexto = {
@@ -13,7 +17,7 @@ def listar_libros(request):
     }
     http_response = render(
         request=request,
-        template_name='mi_biblioteca/lista_libros.html',
+        template_name='mi_libreria/lista_libros.html',
         context=contexto,
     )
     return http_response
@@ -24,7 +28,7 @@ def listar_generos(request):
     }
     http_response = render(
         request=request,
-        template_name='mi_biblioteca/lista_generos.html',
+        template_name='mi_libreria/lista_generos.html',
         context=contexto,
     )
     return http_response
@@ -35,7 +39,7 @@ def listar_autores(request):
     }
     http_response = render(
         request=request,
-        template_name='mi_biblioteca/lista_autores.html',
+        template_name='mi_libreria/lista_autores.html',
         context=contexto,
     )
     return http_response
