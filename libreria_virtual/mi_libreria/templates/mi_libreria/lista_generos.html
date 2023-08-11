@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block titulo %} 
+Lista de géneros disponibles
+{% endblock titulo %}
+
+{% block contenido %}
+
+    <h3>Géneros disponibles:</h3>
+    <ul>
+    {% for genero in generos %}
+    <li>
+        {{ genero.nombre }}
+
+    </li>
+    {% endfor %}
+    </ul>
+
+    <a href="{% url 'crear_generos' %}">Agregar un género</a>
+
+{% endblock contenido %} 

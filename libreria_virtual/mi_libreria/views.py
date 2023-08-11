@@ -1,7 +1,7 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
+from django.shortcuts import render, redirect
 from .models import Libro, Generos, Autores
+from django.urls import reverse
+from .forms import AutorFormulario, LibroFormulario, GeneroFormulario
 
 def inicio(request):
     http_response = render(
@@ -43,4 +43,93 @@ def listar_autores(request):
         context=contexto,
     )
     return http_response
+
+def crear_libros(request):
+   if request.method == "POST":
+       formulario = LibroFormulario(request.POST)
+
+       if formulario.is_valid():
+           data = formulario.cleaned_data  
+           nombre = data["nombre"]
+           genero = data["genero"]
+           sub_genero = data["sub_genero"]
+           autor = data["autor"]
+           resumen = data["resumen"]
+           anio = data["anio"]
+           curso = Libro(nombre=nombre, genero=genero, sub_genero=sub_genero, autor=autor, resumen=resumen, anio=anio)
+           curso.save()
+
+           url_exitosa = reverse('lista_libros')
+           return redirect(url_exitosa)
+   else: 
+       formulario = LibroFormulario()
+   http_response = render(
+       request=request,
+       template_name='mi_libreria/crear_libros.html',
+       context={'formulario': formulario}
+   )
+   return http_response
+
+def crear_generos(request):
+   if request.method == "POST":
+       formulario = GeneroFormulario(request.POST)
+
+       if formulario.is_valid():
+           data = formulario.cleaned_data  
+           nombre = data["nombre"]
+           sub_genero = data["sub_genero"]
+           curso = Generos(nombre=nombre,sub_genero=sub_genero)
+           curso.save()
+
+           url_exitosa = reverse('lista_generos')
+           return redirect(url_exitosa)
+   else: 
+       formulario = GeneroFormulario()
+   http_response = render(
+       request=request,
+       template_name='mi_libreria/crear_generos.html',
+       context={'formulario': formulario}
+   )
+   return http_response
+
+def crear_autores(request):
+   if request.method == "POST":
+       formulario = AutorFormulario(request.POST)
+
+       if formulario.is_valid():
+           data = formulario.cleaned_data  
+           nombre = data["nombre"]
+           apellido = data["apellido"]
+           fecha_nacimiento = data["fecha_nacimiento"]      
+           bio = data["bio"]     
+           curso = Autores(nombre=nombre, apellido=apellido, fecha_nacimiento=fecha_nacimiento, bio=bio)
+           curso.save()
+
+           url_exitosa = reverse('lista_autores')
+           return redirect(url_exitosa)
+   else: 
+       formulario = AutorFormulario()
+   http_response = render(
+       request=request,
+       template_name='mi_libreria/crear_autores.html',
+       context={'formulario': formulario}
+   )
+   return http_response
+
+def buscar_libros(request):
+    if request.method == "POST":
+       data = request.POST
+       busqueda = data["busqueda"]
+       libros = Libro.objects.filter(nombre__contains=busqueda)
+       contexto = {
+           "libros": libros,
+       }
+       http_response = render(
+           request=request,
+           template_name='mi_libreria/lista_libros.html',
+           context=contexto,
+       )
+       return http_response
+
+
 

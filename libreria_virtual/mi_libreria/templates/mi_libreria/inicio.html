@@ -1,8 +1,14 @@
-
+{% extends 'base.html' %}
 
 {% block titulo %}
 <h1>Sean bienvenidos</h1>
 {% endblock titulo %} 
 
 <a href="{% url 'lista_libros' %}">Ver todos los libros</a>
+<br><br>
+
+<a href="{% url 'lista_generos' %}">Ver todos los géneros</a>
+<br><br>
+
+<a href="{% url 'lista_generos' %}">Ver todos los autores</a>
 <br><br>
