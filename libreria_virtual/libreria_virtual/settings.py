@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'perfiles',
     'libreria_virtual',
     'mi_libreria',
     'django.contrib.admin',
