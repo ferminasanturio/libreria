@@ -23,8 +23,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <a class="btn btn-primary" href="{% url 'inicio' %}">Inicio</a>
-                        <a class="btn btn-primary" href="{% url 'registro' %}">REGISTRARSE</a>
+                        {% if user.is_authenticated %}
+                        <a class="btn btn-primary" href="{% url 'logout' %}">Cerrar Sesión</a>
+                        {% else %}
+                        <a class="btn btn-primary" href="{% url 'registro' %}">Registrarse</a>
                         <a class="btn btn-primary" href="{% url 'login' %}">Iniciar Sesión</a>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

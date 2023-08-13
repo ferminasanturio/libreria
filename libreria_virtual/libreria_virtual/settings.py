@@ -59,6 +59,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR / 'templates_base',
+            BASE_DIR / 'mi_libreria/templates',
+            BASE_DIR / 'perfiles/templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
