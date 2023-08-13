@@ -7,13 +7,30 @@ Lista de autores disponibles
 {% block contenido %}
 
     <h3>Autores agregados hasta ahora:</h3>
-    <ul>
-    {% for autor in autores %}
-    <li>
-        {{ autor.nombre }} {{ autor.apellido }}
-    </li>
-    {% endfor %}
-    </ul>
+    <table class="table"> 
+        <tbody> 
+            <tr> 
+                <th>Nombre</th>
+                <th>Apellido</th>
+            </tr>
+            {% for autor in autores %}
+            <tr> 
+                <td>{{ autor.nombre }}</td>
+                <td>{{ autor.apellido }}</td>
+                <td>
+                    <a href="{% url 'editar_autor' autor.id %}">Editar</a>
+                  </td>  
+                <td>
+                    <form action="{% url 'eliminar_autor' autor.id %}" method="post">
+                      {% csrf_token %}
+                      <input type="submit" value="eliminar"/>
+                    </form>
+                  </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    
+    </table>
 
     <a href="{% url 'crear_autores' %}">Agregar un autor</a>
 

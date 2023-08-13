@@ -9,12 +9,21 @@
     <tbody> 
         <tr> 
             <th>Nombre</th>
-            <th>Libro</th>
+            <th>Autor</th>
         </tr>
         {% for libro in libros %}
         <tr> 
             <td>{{libro.nombre}}</td>
             <td>{{libro.autor}}</td>
+            <td>
+                <a href="{% url 'editar_libro' libro.id %}">Editar</a>
+              </td>         
+            <td>
+                <form action="{% url 'eliminar_libro' libro.id %}" method="post">
+                  {% csrf_token %}
+                  <input type="submit" value="eliminar"/>
+                </form>
+              </td>
         </tr>
         {% endfor %}
     </tbody>

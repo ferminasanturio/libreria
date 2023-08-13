@@ -7,14 +7,30 @@ Lista de géneros disponibles
 {% block contenido %}
 
     <h3>Géneros disponibles:</h3>
-    <ul>
-    {% for genero in generos %}
-    <li>
-        {{ genero.nombre }}
-
-    </li>
-    {% endfor %}
-    </ul>
+    <table class="table"> 
+        <tbody> 
+            <tr> 
+                <th>Género</th>
+                <th>Subgénero</th>
+            </tr>
+            {% for genero in generos %}
+            <tr> 
+                <td>{{ genero.nombre }}</td>
+                <td>{{ genero.sub_genero }}</td>
+                <td>
+                    <a href="{% url 'editar_genero' genero.id %}">Editar</a>
+                  </td>
+                <td>
+                    <form action="{% url 'eliminar_genero' genero.id %}" method="post">
+                      {% csrf_token %}
+                      <input type="submit" value="eliminar"/>
+                    </form>
+                  </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    
+    </table>
 
     <a href="{% url 'crear_generos' %}">Agregar un género</a>
 
