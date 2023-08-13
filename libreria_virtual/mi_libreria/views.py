@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 from .models import Libro, Generos, Autores
 from .forms import AutorFormulario, LibroFormulario, GeneroFormulario
+
 
 def inicio(request):
     http_response = render(
@@ -11,6 +13,7 @@ def inicio(request):
     )
     return http_response
 
+@login_required
 def listar_libros(request):
     contexto = {
         "libros": Libro.objects.all(),
@@ -22,6 +25,7 @@ def listar_libros(request):
     )
     return http_response
 
+@login_required
 def listar_generos(request):
     contexto = {
         "generos": Generos.objects.all(),
@@ -33,6 +37,7 @@ def listar_generos(request):
     )
     return http_response
 
+@login_required
 def listar_autores(request):
     contexto = {
         "autores": Autores.objects.all(),
