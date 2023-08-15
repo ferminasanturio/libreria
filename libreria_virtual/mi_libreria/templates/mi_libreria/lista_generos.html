@@ -12,11 +12,13 @@ Lista de géneros disponibles
             <tr> 
                 <th>Género</th>
                 <th>Subgénero</th>
+                <th>Creador</th>
             </tr>
             {% for genero in generos %}
             <tr> 
                 <td>{{ genero.nombre }}</td>
                 <td>{{ genero.sub_genero }}</td>
+                <td>{{ genero.creador }}</td>
                 <td>
                     <a href="{% url 'editar_genero' genero.id %}">Editar</a>
                   </td>

@@ -12,11 +12,13 @@ Lista de autores disponibles
             <tr> 
                 <th>Nombre</th>
                 <th>Apellido</th>
+                <th>Creador</th>
             </tr>
             {% for autor in autores %}
             <tr> 
                 <td>{{ autor.nombre }}</td>
                 <td>{{ autor.apellido }}</td>
+                <td>{{ autor.creador }}</td>
                 <td>
                     <a href="{% url 'editar_autor' autor.id %}">Editar</a>
                   </td>  
