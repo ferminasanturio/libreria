@@ -15,15 +15,15 @@ def inicio(request):
 
 @login_required
 def listar_libros(request):
-    contexto = {
-        "libros": Libro.objects.all(),
-    }
-    http_response = render(
-        request=request,
-        template_name='mi_libreria/lista_libros.html',
-        context=contexto,
-    )
-    return http_response
+        contexto = {
+            "libros": Libro.objects.all(),
+        }
+        http_response = render(
+            request=request,
+            template_name='mi_libreria/lista_libros.html',
+            context=contexto,
+        )
+        return http_response
 
 @login_required
 def listar_generos(request):
