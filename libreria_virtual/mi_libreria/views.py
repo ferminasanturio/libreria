@@ -8,7 +8,7 @@ from .forms import AutorFormulario, LibroFormulario, GeneroFormulario
 def inicio(request):
     http_response = render(
         request=request,
-        template_name= 'mi_libreria/inicio.html',
+        template_name= 'inicio.html',
         context={},
     )
     return http_response
