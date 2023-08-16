@@ -13,7 +13,7 @@ def inicio(request):
     )
     return http_response
 
-@login_required
+
 def listar_libros(request):
         contexto = {
             "libros": Libro.objects.all(),
@@ -25,7 +25,7 @@ def listar_libros(request):
         )
         return http_response
 
-@login_required
+
 def listar_generos(request):
     contexto = {
         "generos": Generos.objects.all(),
@@ -37,7 +37,7 @@ def listar_generos(request):
     )
     return http_response
 
-@login_required
+
 def listar_autores(request):
     contexto = {
         "autores": Autores.objects.all(),
@@ -49,6 +49,7 @@ def listar_autores(request):
     )
     return http_response
 
+@login_required
 def crear_libros(request):
    if request.method == "POST":
        formulario = LibroFormulario(request.POST)
@@ -75,6 +76,7 @@ def crear_libros(request):
    )
    return http_response
 
+@login_required
 def crear_generos(request):
    if request.method == "POST":
        formulario = GeneroFormulario(request.POST)
@@ -97,6 +99,7 @@ def crear_generos(request):
    )
    return http_response
 
+@login_required
 def crear_autores(request):
    if request.method == "POST":
        formulario = AutorFormulario(request.POST)
@@ -136,27 +139,31 @@ def buscar_libros(request):
        )
        return http_response
 
+@login_required
 def eliminar_libro(request, id):
    libro = Libro.objects.get(id=id)
    if request.method == "POST":
        libro.delete()
        url_exitosa = reverse('lista_libros')
        return redirect(url_exitosa)
-   
+
+@login_required   
 def eliminar_autor(request, id):
    autor = Autores.objects.get(id=id)
    if request.method == "POST":
        autor.delete()
        url_exitosa = reverse('lista_autores')
        return redirect(url_exitosa)
-   
+
+@login_required   
 def eliminar_genero(request, id):
    genero = Generos.objects.get(id=id)
    if request.method == "POST":
        genero.delete()
        url_exitosa = reverse('lista_generos')
        return redirect(url_exitosa)
-   
+
+@login_required   
 def editar_libro(request, id):
    libro = Libro.objects.get(id=id)
    if request.method == "POST":
@@ -180,7 +187,7 @@ def editar_libro(request, id):
        template_name='mi_libreria/crear_libros.html',
        context={'formulario': formulario},
    )
-
+@login_required
 def editar_autor(request, id):
    autor = Autores.objects.get(id=id)
    if request.method == "POST":
@@ -204,7 +211,7 @@ def editar_autor(request, id):
        template_name='mi_libreria/crear_autores.html',
        context={'formulario': formulario},
    )
-
+@login_required
 def editar_genero(request, id):
    genero = Generos.objects.get(id=id)
    if request.method == "POST":
