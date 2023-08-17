@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path("blog/", include("blog.urls")),
     path("perfiles/", include("perfiles.urls")),
     path("mi_libreria/", include("mi_libreria.urls")),
     path('admin/', admin.site.urls),
