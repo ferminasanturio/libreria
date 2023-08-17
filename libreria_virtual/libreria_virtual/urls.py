@@ -18,8 +18,10 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views
 
 urlpatterns = [
+    path("", views.inicio, name='inicio'),
     path("blog/", include("blog.urls")),
     path("perfiles/", include("perfiles.urls")),
     path("mi_libreria/", include("mi_libreria.urls")),

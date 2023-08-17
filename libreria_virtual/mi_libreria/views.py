@@ -5,15 +5,6 @@ from .models import Libro, Generos, Autores
 from .forms import AutorFormulario, LibroFormulario, GeneroFormulario
 
 
-def inicio(request):
-    http_response = render(
-        request=request,
-        template_name= 'inicio.html',
-        context={},
-    )
-    return http_response
-
-
 def listar_libros(request):
         contexto = {
             "libros": Libro.objects.all(),

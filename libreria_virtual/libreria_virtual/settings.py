@@ -64,6 +64,7 @@ TEMPLATES = [
             BASE_DIR / 'templates_base',
             BASE_DIR / 'mi_libreria/templates',
             BASE_DIR / 'perfiles/templates',
+            BASE_DIR / 'blog/templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
