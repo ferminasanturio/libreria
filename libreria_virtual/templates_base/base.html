@@ -63,7 +63,7 @@
                                 <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'lista_libros' %}">Libros</a>
                                 <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'lista_autores' %}">Autores</a>
                                 <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'lista_generos' %}">Géneros</a>
-                                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'about_me' %}">About</a>
+                                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'lista_articulos' %}">Artículos</a>
                             </div>
                         </div>
                     </div>
@@ -77,6 +77,11 @@
         </section>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                <a href="{% url 'about_me' %}" target="_blank" rel="noreferrer" class="underline">Sobre mí</a>
+        </div>
+
+
             <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
         </footer>
         <!-- Bootstrap core JS-->
