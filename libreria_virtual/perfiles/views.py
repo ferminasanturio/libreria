@@ -7,6 +7,8 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import UpdateView
 from perfiles.forms import UserRegisterForm, UserUpdateForm, AvatarFormulario
+from .models import Avatar
+from django.core.exceptions import ObjectDoesNotExist
 
 def registro(request):
     if request.method == "POST":
@@ -61,6 +63,14 @@ def agregar_avatar(request):
       formulario = AvatarFormulario(request.POST, request.FILES) # Aquí me llega toda la info del formulario html
 
       if formulario.is_valid():
+          try:
+              anterior_avatar=Avatar.objects.get(user=request.user)
+              if(anterior_avatar.imagen):
+                  anterior_avatar.delete()
+          except Avatar.DoesNotExist:
+            pass
+
+
           avatar = formulario.save()
           avatar.user = request.user
           avatar.save()
@@ -69,7 +79,7 @@ def agregar_avatar(request):
   else:  # GET
       formulario = AvatarFormulario()
   return render(
-      request=request,
-      template_name="perfiles/formulario_avatar.html",
-      context={'form': formulario},
+  request=request,
+  template_name="perfiles/formulario_avatar.html",
+  context={'form': formulario},
   )
