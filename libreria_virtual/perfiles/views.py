@@ -11,40 +11,39 @@ from perfiles.forms import UserRegisterForm, UserUpdateForm, AvatarFormulario
 def registro(request):
     if request.method == "POST":
         formulario = UserRegisterForm(request.POST)
-
-    if formulario.is_valid():
-        formulario.save() 
-        url_exitosa = reverse('inicio')
-        return redirect(url_exitosa)
+        if formulario.is_valid():
+            formulario.save() 
+            url_exitosa = reverse('inicio')
+            return redirect(url_exitosa)
     else: 
         formulario = UserRegisterForm()
-        return render(
-            request=request,
-            template_name='perfiles/registro.html',
-            context={'form': formulario},
-            )
+
+    return render(
+        request=request,
+        template_name='perfiles/registro.html',
+        context={'form': formulario},
+    )
 
 def login_view(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
-
-    if form.is_valid():
-        data = form.cleaned_data
-        usuario = data.get('username')
-        password = data.get('password')
-        user = authenticate(username=usuario, password=password)
-           
-    if user:
-        login(request=request, user=user)
-        url_exitosa = reverse('inicio')
-        return redirect(url_exitosa)
+        if form.is_valid():
+            data = form.cleaned_data
+            usuario = data.get('username')
+            password = data.get('password')
+            user = authenticate(username=usuario, password=password)
+            if user:
+                login(request=request, user=user)
+                url_exitosa = reverse('inicio')
+                return redirect(url_exitosa)
     else:
         form = AuthenticationForm()
-        return render(
+
+    return render(
         request=request,
         template_name='perfiles/login.html',
         context={'form': form},
-        )
+    )
 
 class CustomLogoutView(LogoutView):
     template_name = 'perfiles/logout.html'
