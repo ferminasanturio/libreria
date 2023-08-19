@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Articulo
 from .forms import ArticuloFormulario
+from django.views.generic import DetailView
 
 def about(request):
     return render(request, 'blog/about.html')
@@ -77,4 +78,9 @@ def editar_articulos(request, id):
        template_name='blog/crear_articulos.html',
        context={'formulario': formulario},
    )
+
+class ArticuloDetailView(DetailView):
+    model = Articulo
+    template_name = 'blog/ver_articulo.html'  
+    context_object_name = 'articulo'
 

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+{{ articulo.titulo }}
+{% endblock titulo %}
+
+{% block contenido %}
+<h3>{{ articulo.titulo }}</h3>
+<h4>{{ articulo.subtitulo }}</h4>
+<p><strong>Autor:</strong> {{ articulo.autor }}</p>
+<p><strong>Fecha:</strong> {{ articulo.fecha }}</p>
+<p><strong>Cuerpo:</strong></p>
+<p>{{ articulo.cuerpo }}</p>
+<br>
+<a href="{% url 'lista_articulos' %}">Volver a los artículos</a>
+{% endblock contenido %}
