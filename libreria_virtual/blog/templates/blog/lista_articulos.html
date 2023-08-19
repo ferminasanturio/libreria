@@ -8,31 +8,28 @@ Artículos
 
     <h3>Artículos</h3>
 
-    {% if articulo|length > 0 %}
-
-    <ul>
-        {% for arts in articulo %}
-            <li>{{articulo.titulo}}</li>
-            <li>{{articulo.subtitulo}}</li>
-
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No hay entradas aún.</p>
-{% endif %}
-
-
 <table class="table"> 
-    <tbody> 
-        {% for arts in articulo %}
-        <tr> 
-            <td>{{articulo.titulo}}</td>
-            <td>{{articulo.subtitulo}}</td>
+  <tbody> 
+      <tr> 
+          <th>Título</th>
+          <th>Subtítulo</th>
+          <th>Autor</th>
+          <th>Fecha</th>
+      </tr>
+        {% for articulo in articulos %}
+        <tr>
+            <td>{{ articulo.titulo }}</td>
+            <td>{{ articulo.subtitulo }}</td>
+            <td>{{ articulo.autor }}</td>
+            <td>{{ articulo.fecha }}</td>
             <td>
-                <a href="{% url 'editar_libro' libro.id %}">Editar</a>
+              <a href="{% url 'ver_articulos' articulo.id %}">Ver más</a>
+            </td>
+            <td>
+                <a href="{% url 'editar_articulos' articulo.id %}">Editar</a>
               </td>         
             <td>
-                <form action="{% url 'eliminar_libro' libro.id %}" method="post">
+                <form action="{% url 'eliminar_articulos' articulo.id %}" method="post">
                   {% csrf_token %}
                   <input type="submit" value="eliminar"/>
                 </form>
@@ -40,13 +37,9 @@ Artículos
         </tr>
         {% endfor %}
     </tbody>
-
 </table>
-    
-    <br>
-    <a href="{% url 'crear_libros' %}">Agregar un libro</a>
-    <a href="{% url 'lista_libros' %}">Ver todos los libros</a>
-    <a href="{% url 'lista_autores' %}">Ver autores</a>
-    <a href="{% url 'lista_generos' %}">Ver todos los géneros</a>
-    <br><br>
-{% endblock contenido %} 
+  
+  <br>
+  <a href="{% url 'crear_articulos' %}">Agregar un artículo</a>
+  <br><br>
+{% endblock contenido %}

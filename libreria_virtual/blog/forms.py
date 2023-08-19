@@ -1,4 +1,5 @@
 from django import forms
+from .models import Articulo
 
 class ArticuloFormulario(forms.Form):
    titulo = forms.CharField(required=True, max_length=64)

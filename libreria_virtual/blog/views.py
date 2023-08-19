@@ -44,6 +44,7 @@ def crear_articulos(request):
    )
    return http_response
 
+
 @login_required
 def eliminar_articulos(request, id):
    articulo = Articulo.objects.get(id=id)
@@ -76,3 +77,4 @@ def editar_articulos(request, id):
        template_name='blog/crear_articulos.html',
        context={'formulario': formulario},
    )
+

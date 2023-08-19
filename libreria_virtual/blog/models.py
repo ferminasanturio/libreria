@@ -5,7 +5,7 @@ class Articulo(models.Model):
     subtitulo = models.CharField(max_length=64)
     cuerpo = models.TextField()
     autor = models.CharField(max_length=64)
-    fecha = models.DateField(auto_now_add=True)
+    fecha = models.DateField()
     
 
 
