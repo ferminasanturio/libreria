@@ -26,8 +26,8 @@ Artículos
               <a href="{% url 'ver_articulos' articulo.id %}">See more</a>
           </td>
             <td>
-                <a href="{% url 'editar_articulos' articulo.id %}">Editar</a>
-              </td>         
+              <a href="{% url 'editar_articulos' articulo.id %}">Editar</a>
+          </td>          
             <td>
                 <form action="{% url 'eliminar_articulos' articulo.id %}" method="post">
                   {% csrf_token %}

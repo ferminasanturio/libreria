@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Editar artículo
+{% endblock titulo %}
+
+{% block contenido %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Guardar cambios"/>
+</form>
+<br>
+<a href="{% url 'ver_articulos' articulo.id %}">Volver al artículo</a>
+{% endblock contenido %}

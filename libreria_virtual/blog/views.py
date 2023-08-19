@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import DetailView, UpdateView
 from .models import Articulo
 from .forms import ArticuloFormulario
-from django.views.generic import DetailView
 
 def about(request):
     return render(request, 'blog/about.html')
@@ -45,16 +46,7 @@ def crear_articulos(request):
    )
    return http_response
 
-
 @login_required
-def eliminar_articulos(request, id):
-   articulo = Articulo.objects.get(id=id)
-   if request.method == "POST":
-       articulo.delete()
-       url_exitosa = reverse('lista_articulos')
-       return redirect(url_exitosa)
-
-@login_required   
 def editar_articulos(request, id):
    articulo = Articulo.objects.get(id=id)
    if request.method == "POST":
@@ -78,6 +70,15 @@ def editar_articulos(request, id):
        template_name='blog/crear_articulos.html',
        context={'formulario': formulario},
    )
+
+
+@login_required
+def eliminar_articulos(request, id):
+   articulo = Articulo.objects.get(id=id)
+   if request.method == "POST":
+       articulo.delete()
+       url_exitosa = reverse('lista_articulos')
+       return redirect(url_exitosa)
 
 class ArticuloDetailView(DetailView):
     model = Articulo
