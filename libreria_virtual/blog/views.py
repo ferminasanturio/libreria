@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView
 from .models import Articulo
 from .forms import ArticuloFormulario
 

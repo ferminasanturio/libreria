@@ -7,8 +7,8 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import UpdateView
 from perfiles.forms import UserRegisterForm, UserUpdateForm, AvatarFormulario
-from .models import Avatar
 from django.core.exceptions import ObjectDoesNotExist
+from .models import Avatar
 
 def registro(request):
     if request.method == "POST":
