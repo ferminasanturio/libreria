@@ -12,7 +12,7 @@ Las personas que tengan acceso a la web podrán interactuar con la web mediante 
 
 ## Instrucciones de instalación
 
-+ Desde Visual Studio Code, crear una carpeta contenedora para almacenar el proyecto.
++ Crear una carpeta contenedora para almacenar el proyecto.
 + Abrir una terminal para clonar el proyecto utilizando el comando: "git clone https://github.com/ferminasanturio/libreria"
 + Una vez que el repositorio ha sido clonado, acceder al mismo a través del comando: "cd nombre-repositorio"
 + Instalar las dependencias: "pip install -r requirements.txt"
